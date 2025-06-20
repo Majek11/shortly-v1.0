@@ -1,26 +1,156 @@
-@import "tailwindcss";
+/* @import url('https://fonts.googleapis.com/css2?family=Savate:ital,wght@0,200..900;1,200..900&display=swap'); */
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
+  /* THIS IS THE MISSING PIECE */
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: 0 0% 100%; /* Example: White background */
+    --foreground: 222.2 47.4% 11.2%; /* Example: Dark text */
+
+    --border: 214.3 31.8% 91.4%; /* Example: Light gray border */
+    --input: 214.3 31.8% 91.4%;  /* Often same as border */
+    --ring: 222.2 84% 4.9%;    /* Focus ring color */
+
+    --primary: 222.2 47.4% 11.2%; /* Example: Dark blue primary */
+    --primary-foreground: 210 20% 98%; /* Example: Light text on primary */
+
+    --secondary: 210 40% 96.1%; /* Example: Light gray secondary */
+    --secondary-foreground: 222.2 47.4% 11.2%; /* Example: Dark text on secondary */
+
+    --accent: 210 40% 96.1%; /* Example: Similar to secondary */
+    --accent-foreground: 222.2 47.4% 11.2%; /* Example: Dark text on accent */
+
+    --destructive: 0 84.2% 60.2%; /* Example: Red for errors */
+    --destructive-foreground: 210 20% 98%; /* Example: Light text on destructive */
+
+    --card: 0 0% 100%; /* Example: White card background */
+    --card-foreground: 222.2 47.4% 11.2%; /* Example: Dark text on card */
+
+    --popover: 0 0% 100%; /* Example: White popover background */
+    --popover-foreground: 222.2 47.4% 11.2%; /* Example: Dark text on popover */
+
+    --muted: 210 40% 96.1%; /* Example: Muted background */
+    --muted-foreground: 215.4 16.3% 46.9%; /* Example: Muted text */
+
+    --radius: 0.5rem; /* Example: Default border-radius */
+  }
+
+  /* Your existing global styles go here */
+  * {
+    @apply border-border; /* Now 'border-border' will work! */
+  }
+  body {
+  font-family: "Savate", sans-serif;    
+  @apply bg-background text-foreground; /* Now these will work! */
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer utilities {
+  .animate-fade-in-up {
+    animation: fadeInUp 0.8s ease-out forwards;
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  .animate-slide-in-right {
+    animation: slideInRight 1s ease-out forwards;
+    opacity: 0;
+    transform: translateX(50px);
+  }
+
+  .animate-blob {
+    animation: blob 7s infinite;
+  }
+
+  /* ... (your animation-delay classes) ... */
+  .animation-delay-200 {
+    animation-delay: 200ms;
+  }
+
+  .animation-delay-400 {
+    animation-delay: 400ms;
+  }
+
+  .animation-delay-600 {
+    animation-delay: 600ms;
+  }
+
+  .animation-delay-800 {
+    animation-delay: 800ms;
+  }
+
+  .animation-delay-1000 {
+    animation-delay: 1000ms;
+  }
+
+  .animation-delay-1200 {
+    animation-delay: 1200ms;
+  }
+
+  .animation-delay-2000 {
+    animation-delay: 2000ms;
+  }
+
+  .animation-delay-4000 {
+    animation-delay: 4000ms;
+  }
+
+  .animation-delay-6000 {
+    animation-delay: 6000ms;
+  }
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInRight {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes blob {
+  0% {
+    transform: translate(0px, 0px) scale(1);
+  }
+  33% {
+    transform: translate(30px, -50px) scale(1.1);
+  }
+  66% {
+    transform: translate(-20px, 20px) scale(0.9);
+  }
+  100% {
+    transform: translate(0px, 0px) scale(1);
+  }
+}
+
+/* Enhanced scrollbar with gradient */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: linear-gradient(45deg, #f1f1f1, #e5e5e5);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(45deg, #f97316, #ec4899, #8b5cf6);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(45deg, #ea580c, #db2777, #7c3aed);
 }
